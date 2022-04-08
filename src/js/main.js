@@ -7,14 +7,6 @@ const btnReset = document.querySelector('.js-btnReset');
 const favoriteDrinks = document.querySelector('.js-favoriteDrinks');
 let drinks = [];
 
-fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data.drinks);
-    //salvar la info de bebidas
-    drinks = data.drinks;
-  });
-
 //escuchar click a cada drink
 function listenerDrinks() {
   const liDrinks = document.querySelectorAll('.js-listdrink');
@@ -23,7 +15,7 @@ function listenerDrinks() {
   }
 }
 //pintar y llamar la info
-function rendertotalDrinks() {
+function rendertotalDrinks(listfilter) {
   let html = '';
   for (const drinkItem of drinks) {
     html += `<li class = "js_listdrink" id= ${drinkItem.idDrink}>`;
@@ -56,8 +48,11 @@ function handleClickDrink(event) {
     //splice, elimina un elemento de mis favoritos
     favorites.splice(drinkFavFoundIndex, 1);
   }
+  //pinta favoritos
+  renderfavoriteDrinks(listfilter);
+}
 
-  function renderfavoriteDrinks() {
+function renderfavoriteDrinks(listfilter) {
   let htmlFavDrinks = '';
   for (const FavoriteItem of favoriteDrinks) {
     htmlFavDrinks += `<li class = "favdrink js_Favlistdrink" ${FavoriteItem.idDrink}>`;
@@ -66,5 +61,26 @@ function handleClickDrink(event) {
     htmlFavDrinks += `</li>`;
   }
   listfavoriteDrinks.innerHTML = htmlFavDrinks;
-  renderfavoriteDrinks();
 }
+
+//filtrar nombres de drink cuando usuaria escribe en input
+function handleInput(event) {
+  event.preventDefault();
+  const filter = input.value; //coge el valor que ingresa usuaria
+  const listfilter = drinks.filter((drink) => {
+    return drink.name.toLowerCase().includes(filter.toLowerCase());
+  });
+  rendertotalDrinks(listfilter);
+}
+
+//evento
+input.addEventListener('keyup', handleInput);
+
+fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data.drinks);
+    //salvar la info de bebidas
+    drinks = data.drinks;
+    //rendertotalDrinks(listfilter);
+  });
