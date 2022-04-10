@@ -1,0 +1,45 @@
+.tittle {
+    color: lightseagreen;
+    font-size: 45px;
+    display: flex;
+    justify-content: center;
+}
+.form{
+    display: flex;
+    justify-content: center;
+}
+.input {
+    border-color: lightseagreen;
+    margin: 10px;
+}
+.btnSearch {
+    background-color: lightseagreen;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 05px;
+    margin: 10px;
+    cursor: pointer;
+
+}
+.btnReset{
+    background-color: lightseagreen;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 05px;
+    margin: 10px;
+    cursor: pointer;
+
+}
+.Drinks {
+    display: grid;
+    grid-template-columns: auto auto;
+    font-size: 20px;
+    justify-content: space-around;
+
+}
+.Favorite .FavDrinks {
+    color: aquamarine;
+    border-color: aquamarine;
+}
