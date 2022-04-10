@@ -51,7 +51,7 @@ function handleClickDrink(event) {
   //pinta favoritos
   renderfavoriteDrinks(listfilter);
 }
-
+//lista favpritos
 function renderfavoriteDrinks(listfilter) {
   let htmlFavDrinks = '';
   for (const FavoriteItem of favoriteDrinks) {
@@ -73,14 +73,33 @@ function handleInput(event) {
   rendertotalDrinks(listfilter);
 }
 
+//local storage, si esta o no
+const listFavDrinks = JSON.parse(localStorage.getItem('listFavoDrinks'));
+if (listFavDrinks !== null) {
+  favoriteDrinks = listFavoDrinks; //guardo fav en lista de favoritos
+  renderfavoriteDrinks(favoriteDrinks);
+} else {
+  fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data.drinks);
+      //salvar la info de bebidas
+      drinks = data.drinks;
+
+      localStorage.setItem('listFavDrinks', JSON.stringify(drinks));
+      //rendertotalDrinks(listfilter);
+    });
+}
+//boton reset
+function handleClickReset() {
+  input.value = '';
+  localStorage.setItem('listFavDrinks');
+  listfavoriteDrinks.innerHTML = '';
+  favorites = [];
+  totalDrinks.innerHTML = '';
+}
+
 //evento
 input.addEventListener('keyup', handleInput);
-
-fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data.drinks);
-    //salvar la info de bebidas
-    drinks = data.drinks;
-    //rendertotalDrinks(listfilter);
-  });
+//btnSearch.addEventListener('click', handleClickSearch);
+btnReset.addEventListener('click', handleClickReset);
