@@ -15,6 +15,7 @@ function listenerDrinks() {
   }
 }
 //pintar y llamar la info
+
 function rendertotalDrinks(listfilter) {
   let html = '';
   for (const drinkItem of drinks) {
@@ -55,7 +56,7 @@ function handleClickDrink(event) {
 function renderfavoriteDrinks(listfilter) {
   let htmlFavDrinks = '';
   for (const FavoriteItem of favoriteDrinks) {
-    htmlFavDrinks += `<li class = "favdrink js_Favlistdrink" ${FavoriteItem.idDrink}>`;
+    htmlFavDrinks += `<li class = "favdrink js_Favlistdrink"> ${FavoriteItem.idDrink}>`;
     htmlFavDrinks += `<h3 class = "favName js_FavnameDrink"> ${FavoriteItem.strDrink}</h3>`;
     htmlFavDrinks += `img src ${FavoriteItem.strDrinkThumb} alt="Imagen de Bebida" class ="img_drinkFav" />`;
     htmlFavDrinks += `</li>`;
@@ -79,7 +80,9 @@ if (listFavDrinks !== null) {
   favoriteDrinks = listFavoDrinks; //guardo fav en lista de favoritos
   renderfavoriteDrinks(favoriteDrinks);
 } else {
-  fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
+  fetch(
+    'https://www.thecocktaildb.com/api/json/v1/1/search.php?s= ${input.value}' //preguntar si ok
+  )
     .then((response) => response.json())
     .then((data) => {
       console.log(data.drinks);
