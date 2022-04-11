@@ -11,19 +11,24 @@
   <body>
     <main>
       <div>
-        <h2>Buscador Cócteles</h2>
-        <form>
-          <input type="text" />
-          <button type="button" Buscar></button>
-          <button type="button" Reset></button>
+        <h2 class="tittle">Buscador Cocktails</h2>
+        <form class="form">
+          <input type="text" class="input input js-input" />
+          <button type="button" class="btnSearch js-btnSearch">Buscar</button>
+          <button type="button" class="btnReset js-btnReset">Reset</button>
         </form>
-        <div>
-          <section>
-            <h2>Bebidas favoritas</h2>
+        <div class="Drinks">
+          <section class="Favorites">
+            <h2 class="TittleDrinks">Bebidas favoritas</h2>
+            <ul class="FavDrinks js-favoriteDrinks">
+              <li class="listFav"></li>
+            </ul>
           </section>
-          <section>
-            <h2>Todas las bebidas</h2>
-            <ul></ul>
+          <section class="AllDrinks">
+            <h2 class="TittleAllDrinks">Todas las bebidas</h2>
+            <ul class="AllDrinks js-totalDrinks">
+              <li class="listAllDrinks"></li>
+            </ul>
           </section>
         </div>
       </div>

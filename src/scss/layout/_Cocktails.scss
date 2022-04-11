@@ -32,6 +32,7 @@
     cursor: pointer;
 
 }
+
 .Drinks {
     display: grid;
     grid-template-columns: auto auto;
@@ -40,9 +41,15 @@
     color: gray;
 
 }
-
-.Favorite .FavDrinks {
+.listAllDrinks {
+    list-style-type: none;
+}
+.Favorites .listFav {
     color: lightcoral;
     border-color: lightcoral;
+    display: block;
+    list-style-type: none;
+
+
 }
     
